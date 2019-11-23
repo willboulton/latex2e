@@ -210,9 +210,9 @@ local function fmt(engines,dest)
     return 0
   end
 
-  if dest ~= typesetdir and
-    (not options["config"] or options["config"][1] ~= "config-TU") then
-    cp("fonttext.cfg",supportdir,unpackdir)
+
+  if (not options["config"]) then
+    cp("test2e.cfg",supportdir,testdir)
   end
 
   -- Zap the custom hyphen.cfg when typesetting
