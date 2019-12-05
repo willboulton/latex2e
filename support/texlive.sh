@@ -41,10 +41,13 @@ tlmgr install   \
   fontspec      \
   hyperref      \
   iftex         \
+  kvoptions     \
   oberdiek      \
+  pdftexcmds    \
   lh            \
   lualibs       \
   luaotfload    \
+  stringenc     \
   url
 
 # Additional support for typesetting
@@ -55,6 +58,7 @@ tlmgr install  \
   csquotes     \
   dvips        \
   epstopdf     \
+  epstopdf-pkg \
   etoolbox     \
   fancyvrb     \
   fc           \
