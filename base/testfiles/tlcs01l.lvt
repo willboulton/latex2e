@@ -33,10 +33,12 @@
 
 \documentstyle{letter}
 \pagestyle{headings}
-\begin{document}
+
 
 % Input the test macros for LaTeX2e
 \input{test2e}
+
+\begin{document}
 
 % Everything before this is ignored by the test system.
 \START
