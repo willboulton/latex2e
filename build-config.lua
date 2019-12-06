@@ -27,6 +27,7 @@ checksuppfiles = checksuppfiles     or
     "graphics.cfg",
     "test209.tex",
     "test2e.tex",
+    "test2e.cfg",
     "xetex.def",
     "dvips.def",
     "lipsum.sty",
@@ -210,10 +211,6 @@ local function fmt(engines,dest)
     return 0
   end
 
-
-  if (not options["config"]) then
-    cp("test2e.cfg",supportdir,testdir)
-  end
 
   -- Zap the custom hyphen.cfg when typesetting
   if dest == typesetdir then
