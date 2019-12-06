@@ -19,10 +19,11 @@
 % Beebe. Change made 26 Aug 91.)
 
 \documentstyle{article}
-\begin{document}
 
 % Input the test macros for LaTeX2e
 \input{test2e}
+
+\begin{document}
 
 % Everything before this is ignored by the test system.
 \START
