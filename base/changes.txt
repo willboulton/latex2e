@@ -8,6 +8,12 @@ are not part of the distribution.
 
 2020-12-02  Joseph Wright  <Joseph.Wright@latex-project.org>
 
+	* ltexpl.dtx
+           Adjust for full xparse integration
+
+        * ltcmd.dtx
+          New file to replace loading xparse
+
         * usrguide3.tex
           New file to document ltcmd
 
