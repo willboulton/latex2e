@@ -30,6 +30,8 @@
 
 \documentclass{ltxguide}
 
+\usepackage[T1]{fontenc}  % needed for \textbackslash in tt
+
 \title{\LaTeX3 methods for authors}
 \author{\copyright~Copyright 2020, \LaTeX\ Project Team.\\
    All rights reserved.}
@@ -38,7 +40,7 @@
 
 \NewDocumentCommand\cs{m}{\texttt{\textbackslash\detokenize{#1}}}
 \NewDocumentCommand\marg{m}{\arg{#1}}
-\NewDocumentCommand\meta{m}{\ensuremath{\langle}\ensuremath{\rangle}}
+\NewDocumentCommand\meta{m}{\ensuremath{\langle}\textit{#1}\ensuremath{\rangle}}
 \NewDocumentCommand\pkg{m}{\textsf{#1}}
 \NewDocumentCommand\text{m}{\ifmmode\mbox{#1}\else#1\fi}
 % Fix a 'feature'
@@ -79,7 +81,7 @@ command.
 
 First, we will describe the argument types, then move on to explain how these
 can be used to create both document commands and environments. Various more
-specialised features are then described, which allow an even richer application
+specialized features are then described, which allow an even richer application
 of a simple interface set up.
 
 The details here are intended to help users create document commands in
@@ -187,7 +189,7 @@ feature) and is covered in Section~\ref{sec:cmd:processors}.
   |\NewDocumentCommand|     \arg{cmd} \arg{arg spec} \arg{code} \\
   |\RenewDocumentCommand|   \arg{cmd} \arg{arg spec} \arg{code} \\
   |\ProvideDocumentCommand| \arg{cmd} \arg{arg spec} \arg{code} \\
-  |\DeclareDocumentCommand| \arg{cmd} \arg{arg spec} \arg{code} \\
+  |\DeclareDocumentCommand| \arg{cmd} \arg{arg spec} \arg{code}
 \end{decl}
 This family of commands are used to create a \meta{cmd}. The argument
 specification for the function is given by \meta{arg spec}, and the command
@@ -198,8 +200,8 @@ An example:
 \begin{verbatim}
   \NewDocumentCommand\chapter{s o m}
     {%
-      \IfBooleanTF{#1}
-        {\typesetstarchapter{#3}}
+      \IfBooleanTF{#1}%
+        {\typesetstarchapter{#3}}%
         {\typesetnormalchapter{#2}{#3}}%
     }
 \end{verbatim}
@@ -210,18 +212,18 @@ could test its first argument for being |-NoValue-| to see if an optional
 argument was present. (See Section~\ref{sec:cmd:special} for details of
 \cs{IfBooleanTF} and testing for |-NoValue-|.)
 
-The difference between the \cs{New\ldots} \cs{Renew\ldots}, \cs{Provide\ldots}
-and \cs{Declare\ldots} versions is the behaviour if \meta{function} is already
+The difference between the \cs{New...} \cs{Renew...}, \cs{Provide...}
+and \cs{Declare...} versions is the behavior if \meta{cmd} is already
 defined.
 \begin{itemize}
- \item \cs{NewDocumentCommand} will issue an error if \meta{command}
+ \item \cs{NewDocumentCommand} will issue an error if \meta{cmd}
    has already been defined.
- \item \cs{RenewDocumentCommand} will issue an error if \meta{command}
+ \item \cs{RenewDocumentCommand} will issue an error if \meta{cmd}
    has not previously been defined.
  \item \cs{ProvideDocumentCommand} creates a new definition for
    \meta{function} only if one has not already been given.
  \item \cs{DeclareDocumentCommand} will always create the new
-   definition, irrespective of any existing \meta{command} with the
+   definition, irrespective of any existing \meta{cmd} with the
    same name.  This should be used sparingly.
 \end{itemize}
 
@@ -229,7 +231,7 @@ defined.
   |\NewDocumentEnvironment|     \arg{env} \arg{arg spec} \arg{beg-code} \arg{end-code} \\
   |\RenewDocumentEnvironment|   \arg{env} \arg{arg spec} \arg{beg-code} \arg{end-code} \\
   |\ProvideDocumentEnvironment| \arg{env} \arg{arg spec} \arg{beg-code} \arg{end-code} \\
-  |\DeclareDocumentEnvironment| \arg{env} \arg{arg spec} \arg{beg-code} \arg{end-code} \\
+  |\DeclareDocumentEnvironment| \arg{env} \arg{arg spec} \arg{beg-code} \arg{end-code}
 \end{decl}
 These commands work in the same way as \cs{NewDocumentCommand}, etc.\@, but
 create environments (\cs{begin}\arg{env} \ldots{}
@@ -311,7 +313,9 @@ has default \texttt{UP} for the |^| test character, but will return the
 |-NoValue-| marker as a default for |_|. This allows mixing of explicit
 defaults with testing for missing values.
 
+
 \subsection{Testing special values}
+\label{sec:cmd:special}
 
 Optional arguments make use of dedicated variables to return information about
 the nature of the argument received.
@@ -326,8 +330,8 @@ The \cs{IfNoValue(TF)} tests are used to check if \meta{argument} (|#1|,
 \begin{verbatim}
   \NewDocumentCommand\foo{o m}
     {%
-      \IfNoValueTF {#1}
-        {\DoSomethingJustWithMandatoryArgument{#2}}
+      \IfNoValueTF {#1}%
+        {\DoSomethingJustWithMandatoryArgument{#2}}%
         {\DoSomethingWithBothArguments{#1}{#2}}%
     }
 \end{verbatim}
@@ -384,8 +388,8 @@ Used to test if \meta{argument} (|#1|, |#2|, \emph{etc.}) is
 \begin{verbatim}
   \NewDocumentCommand\foo{sm}
     {%
-      \IfBooleanTF {#1}
-        {\DoSomethingWithStar{#2}}
+      \IfBooleanTF {#1}%
+        {\DoSomethingWithStar{#2}}%
         {\DoSomethingWithoutStar{#2}}%
     }
 \end{verbatim}
@@ -397,7 +401,7 @@ take based on this information.
 
 Argument processor are applied to an argument \emph{after} it has been grabbed
 by the underlying system but before it is passed to \meta{code}. An argument
-processor can therefore be used to regularise input at an early stage, allowing
+processor can therefore be used to regularize input at an early stage, allowing
 the internal functions to be completely independent of input form. Processors
 are applied to user input and to default values for optional arguments, but
 \emph{not} to the special |-NoValue-| marker.
@@ -424,8 +428,7 @@ If there are fewer than \arg{number} of \arg{tokens} in the argument
 then |-NoValue-| markers are added at the end of the processed
 argument.
 \begin{verbatim}
-  \NewDocumentCommand \foo
-    {>{\SplitArgument{2}{;}} m}
+  \NewDocumentCommand \foo {>{\SplitArgument{2}{;}} m}
     {\InternalFunctionOfThreeArguments#1}
 \end{verbatim}
 If only a single character \meta{token} is used for the split, any
@@ -442,8 +445,7 @@ then wrapped in braces within |#1|. The result is that the
 processed argument can be further processed using a mapping function
 (see below).
 \begin{verbatim}
-  \NewDocumentCommand \foo
-    {>{\SplitList{;}} m}
+  \NewDocumentCommand \foo {>{\SplitList{;}} m}
     {\MappingFunction#1}
 \end{verbatim}
 If only a single character \meta{token} is used for the split, any
@@ -458,8 +460,7 @@ To support \cs{SplitList}, the function \cs{ProcessList} is available
 to apply a \meta{function} to every entry in a \meta{list}. The
 \meta{function} should absorb one argument: the list entry. For example
 \begin{verbatim}
-  \NewDocumentCommand \foo
-    {>{\SplitList{;}} m}
+  \NewDocumentCommand \foo {>{\SplitList{;}} m}
     {\ProcessList{#1}{\SomeDocumentCommand}}
 \end{verbatim}
 
@@ -471,8 +472,8 @@ This processor reverses the logic of \cs{BooleanTrue} and
 \begin{verbatim}
   \NewDocumentCommand\foo{>{\ReverseBoolean} s m}
    {%
-      \IfBooleanTF#1
-        {\DoSomethingWithoutStar{#2}}
+      \IfBooleanTF#1%
+        {\DoSomethingWithoutStar{#2}}%
         {\DoSomethingWithStar{#2}}%
     }
 \end{verbatim}
@@ -484,15 +485,14 @@ Removes any leading and trailing spaces (tokens with character code~$32$
 and category code~$10$) for the ends of the argument. Thus for example
 declaring a function
 \begin{verbatim}
-  \NewDocumentCommand\foo
-    {>{\TrimSpaces} m}
+  \NewDocumentCommand\foo {>{\TrimSpaces} m}
     {\showtokens{#1}}
 \end{verbatim}
 and using it in a document as
-\begin{verbatim}
-  \foo{ hello world }
-\end{verbatim}
-will show \texttt{hello world} at the terminal, with the space at each
+\begin{flushleft}
+  \verb=  =\verb*=\foo{ hello world }=
+\end{flushleft}
+will show `\verb*=hello world=' at the terminal, with the space at each
 end removed. \cs{TrimSpaces} will remove multiple spaces from the ends of
 the input in cases where these have been included such that the standard
 \TeX{} conversion of multiple spaces to a single space does not apply.
@@ -500,7 +500,7 @@ the input in cases where these have been included such that the standard
 \subsection{Body of an environment}
 \label{sec:cmd:body}
 
-While environments |\begin|\marg{environment} \dots{} |\end|\marg{environment}
+While environments |\begin|\marg{environment}\ \dots{}\,|\end|\marg{environment}
 are typically used in cases where the code implementing the \meta{environment}
 does not need to access the contents of the environment (its `body'),
 it is sometimes useful to have the body as a standard argument.
@@ -508,9 +508,10 @@ it is sometimes useful to have the body as a standard argument.
 This is achieved by ending the argument specification with~\texttt{b}, which is
 a dedicated argument type for this situation. For instance
 \begin{verbatim}
-  \NewDocumentEnvironment{twice}
-    {O{\ttfamily} +b}
+  \NewDocumentEnvironment{twice} {O{\ttfamily} +b}
     {#2#1#2} {}
+\end{verbatim}
+\begin{verbatim}
   \begin{twice}[\itshape]
     Hello world!
   \end{twice}
@@ -523,8 +524,7 @@ spaces are trimmed at both ends of the body: in the example there would
 otherwise be spaces coming from the ends the lines after |[\itshape]| and
 |world!|. Putting the prefix |!| before \texttt{b} suppresses space-trimming.
 
-When \texttt{b} is used in the argument specification, the last argument of
-\cs{NewDocumentEnvironment}, which consists of an \meta{end code} to insert at
+When \texttt{b} is used in the argument specification, the last argument of the environment declaration (e.g., \cs{NewDocumentEnvironment}), which consists of an \meta{end code} to insert at
 |\end|\marg{environment}, is redundant since one can simply put that code at
 the end of the \meta{start code}. Nevertheless this (empty) \meta{end code}
 must be provided.
@@ -545,7 +545,7 @@ This facility should only be used when \emph{absolutely necessary}.
   |\NewExpandableDocumentCommand|     \arg{cmd} \arg{arg spec} \arg{code} \\
   |\RenewExpandableDocumentCommand|   \arg{cmd} \arg{arg spec} \arg{code} \\
   |\ProvideExpandableDocumentCommand| \arg{cmd} \arg{arg spec} \arg{code} \\
-  |\DeclareExpandableDocumentCommand| \arg{cmd} \arg{arg spec} \arg{code} \\
+  |\DeclareExpandableDocumentCommand| \arg{cmd} \arg{arg spec} \arg{code}
 \end{decl}
 This family of commands is used to create a document-level \meta{function},
 which will grab its arguments in a fully-expandable manner. The
@@ -583,7 +583,7 @@ control sequence tokens.
 
 \subsubsection{Character tokens}
 
-A character token is characterised by its character code, and its meaning
+A character token is characterized by its character code, and its meaning
 is the category code~(|\catcode|).  When a command is defined, the meaning
 of the character token is fixed into the definition of the command and
 cannot change.  A command will correctly see an argument delimiter if
@@ -591,6 +591,8 @@ the open delimiter has the same character and category codes as at the
 time of the definition.  For example in:
 \begin{verbatim}
   \NewDocumentCommand { \foobar } { D<>{default} } {(#1)}
+\end{verbatim}
+\begin{verbatim}
   \foobar <hello> \par
   \char_set_catcode_letter:N <
   \foobar <hello>
@@ -609,7 +611,7 @@ and the command call is aborted.
 
 \subsubsection{Control sequence tokens}
 
-A control sequence (or control character) token is characterised by is
+A control sequence (or control character) token is characterized by is
 its name, and its meaning is its definition.
 A token cannot have two different meanings at the same time.
 When a control sequence is defined as delimiter in a command,
@@ -641,13 +643,17 @@ as functions which take one trailing argument, and which leave their result in
 the \cs{ProcessedArgument} variable. For example, \cs{ReverseBoolean} is
 defined as
 \begin{verbatim}
+\ExplSyntaxOn
   \cs_new_protected:Npn \ReverseBoolean #1
     {
       \bool_if:NTF #1
         { \tl_set:Nn \ProcessedArgument { \c_false_bool } }
         { \tl_set:Nn \ProcessedArgument { \c_true_bool } }
     }
+\ExplSyntaxOff
 \end{verbatim}
+[As an aside: the code is written in \pkg{expl3}, so we don't have to
+  worry about spaces creeping into the definition.]
 
 \subsection{Access to the argument specification}
 
@@ -655,7 +661,7 @@ The argument specifications for document commands and environments are
 available for examination and use.
 
 \begin{decl}
-  |\GetDocumentCommandArgSpec| \arg{function}
+  |\GetDocumentCommandArgSpec| \arg{function}         \\
   |\GetDocumentEnvironmentArgSpec| \arg{environment}
 \end{decl}
 These functions transfer the current argument specification for the
@@ -666,7 +672,7 @@ is issued. The assignment to \cs{ArgumentSpecification} is local to
 the current \TeX{} group.
 
 \begin{decl}
-  |\ShowDocumentCommandArgSpec| \arg{function}
+  |\ShowDocumentCommandArgSpec| \arg{function}         \\
   |\ShowDocumentEnvironmentArgSpec| \arg{environment}
 \end{decl}
 These functions show the current argument specification for the
