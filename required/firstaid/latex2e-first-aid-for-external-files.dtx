@@ -485,6 +485,21 @@
 %
 %
 %
+% \subsection{The \pkg{cmap} package first aid}
+%
+%    \pkg{cmap} manually adds /ToUnicode maps to PDF fonts. Since the
+%    \LaTeX{} kernel now instructs pdf\TeX{} to add a /ToUnicode map
+%    automatically these get duplicated. For now just disable this
+%    feature when cmap gets loaded.
+%    \begin{macrocode}
+\AddToHook{file/after/cmap.sty}[firstaid]{%
+  \FirstAidNeededT{cmap}{sty}{2008/03/06 v1.0h CMap support: searchable PDF}%
+                  {\pdfgentounicode=0 }%
+}
+%    \end{macrocode}
+%
+%
+%
 % \subsection[Temporary fixes for the kernel (until the next
 %             patch-level release)]
 %    {Temporary fixes for the kernel \\

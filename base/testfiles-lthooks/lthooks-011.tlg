@@ -67,6 +67,12 @@ Code labels for sorting:
 Data structure for label rules:
  firstaid = 0 -> 
 Handled code for firstaid
+Update code for hook 'file/after/cmap.sty' on input line ...:
+Code labels for sorting:
+ firstaid
+Data structure for label rules:
+ firstaid = 0 -> 
+Handled code for firstaid
 Update code for hook 'xxx' on input line ...:
 Code labels for sorting:
  front
@@ -86,6 +92,7 @@ All initialized (non-empty) hooks:
  file/after/pgfpages.sty -> \__hook_toplevel file/after/pgfpages.sty \cs_gset_eq:NN \shipout \pgfpages@originalshipout \cs_set_eq:NN \pgfpages@originalshipout \tex_shipout:D \cs_set_eq:NN \tex_shipout:D \pgfpages@interceptshipout \__hook_next file/after/pgfpages.sty  
  file/after/pgfmorepages.sty -> \__hook_toplevel file/after/pgfmorepages.sty \cs_set_nopar:Npn \pgfhookintoshipout {\cs_set_eq:NN \pgfpages@originalshipout \tex_shipout:D \cs_set_eq:NN \tex_shipout:D \pgfpages@interceptshipout }\__hook_next file/after/pgfmorepages.sty  
  file/after/CJK.sty -> \__hook_toplevel file/after/CJK.sty \FirstAidNeededT {CJK}{sty}{....-..-.. 4.8.4}{\DeclareCommandCopy \selectfont \CJK@selectfont \AddToHook {selectfont}[CJK]{\expandafter \ifx \csname CJK@\curr@fontshape \endcsname \relax \else \CJK@bold@false \csname CJK@\curr@fontshape \endcsname \fi }}\__hook_next file/after/CJK.sty  
+ file/after/cmap.sty -> \__hook_toplevel file/after/cmap.sty \FirstAidNeededT {cmap}{sty}{....-..-.. v... CMap support: searchable PDF}{\pdfgentounicode =0 }\__hook_next file/after/cmap.sty  
  xxx -> foo\__hook_toplevel xxx \__hook_next xxx  
 **** Add to hook xxx (rear) on input line ... <- bar
 Update code for hook 'begindocument' on input line ...:
@@ -154,6 +161,12 @@ Code labels for sorting:
 Data structure for label rules:
  firstaid = 0 -> 
 Handled code for firstaid
+Update code for hook 'file/after/cmap.sty' on input line ...:
+Code labels for sorting:
+ firstaid
+Data structure for label rules:
+ firstaid = 0 -> 
+Handled code for firstaid
 Update code for hook 'xxx' on input line ...:
 Code labels for sorting:
  front and rear
@@ -175,6 +188,7 @@ All initialized (non-empty) hooks:
  file/after/pgfpages.sty -> \__hook_toplevel file/after/pgfpages.sty \cs_gset_eq:NN \shipout \pgfpages@originalshipout \cs_set_eq:NN \pgfpages@originalshipout \tex_shipout:D \cs_set_eq:NN \tex_shipout:D \pgfpages@interceptshipout \__hook_next file/after/pgfpages.sty  
  file/after/pgfmorepages.sty -> \__hook_toplevel file/after/pgfmorepages.sty \cs_set_nopar:Npn \pgfhookintoshipout {\cs_set_eq:NN \pgfpages@originalshipout \tex_shipout:D \cs_set_eq:NN \tex_shipout:D \pgfpages@interceptshipout }\__hook_next file/after/pgfmorepages.sty  
  file/after/CJK.sty -> \__hook_toplevel file/after/CJK.sty \FirstAidNeededT {CJK}{sty}{....-..-.. 4.8.4}{\DeclareCommandCopy \selectfont \CJK@selectfont \AddToHook {selectfont}[CJK]{\expandafter \ifx \csname CJK@\curr@fontshape \endcsname \relax \else \CJK@bold@false \csname CJK@\curr@fontshape \endcsname \fi }}\__hook_next file/after/CJK.sty  
+ file/after/cmap.sty -> \__hook_toplevel file/after/cmap.sty \FirstAidNeededT {cmap}{sty}{....-..-.. v... CMap support: searchable PDF}{\pdfgentounicode =0 }\__hook_next file/after/cmap.sty  
  xxx -> foobar\__hook_toplevel xxx \__hook_next xxx  
 **** Add to hook xxx (labels) on input line ... <- baz
 Update code for hook 'begindocument' on input line ...:
@@ -243,6 +257,12 @@ Code labels for sorting:
 Data structure for label rules:
  firstaid = 0 -> 
 Handled code for firstaid
+Update code for hook 'file/after/cmap.sty' on input line ...:
+Code labels for sorting:
+ firstaid
+Data structure for label rules:
+ firstaid = 0 -> 
+Handled code for firstaid
 Update code for hook 'xxx' on input line ...:
 Code labels for sorting:
  front, rear and labels
@@ -266,6 +286,7 @@ All initialized (non-empty) hooks:
  file/after/pgfpages.sty -> \__hook_toplevel file/after/pgfpages.sty \cs_gset_eq:NN \shipout \pgfpages@originalshipout \cs_set_eq:NN \pgfpages@originalshipout \tex_shipout:D \cs_set_eq:NN \tex_shipout:D \pgfpages@interceptshipout \__hook_next file/after/pgfpages.sty  
  file/after/pgfmorepages.sty -> \__hook_toplevel file/after/pgfmorepages.sty \cs_set_nopar:Npn \pgfhookintoshipout {\cs_set_eq:NN \pgfpages@originalshipout \tex_shipout:D \cs_set_eq:NN \tex_shipout:D \pgfpages@interceptshipout }\__hook_next file/after/pgfmorepages.sty  
  file/after/CJK.sty -> \__hook_toplevel file/after/CJK.sty \FirstAidNeededT {CJK}{sty}{....-..-.. 4.8.4}{\DeclareCommandCopy \selectfont \CJK@selectfont \AddToHook {selectfont}[CJK]{\expandafter \ifx \csname CJK@\curr@fontshape \endcsname \relax \else \CJK@bold@false \csname CJK@\curr@fontshape \endcsname \fi }}\__hook_next file/after/CJK.sty  
+ file/after/cmap.sty -> \__hook_toplevel file/after/cmap.sty \FirstAidNeededT {cmap}{sty}{....-..-.. v... CMap support: searchable PDF}{\pdfgentounicode =0 }\__hook_next file/after/cmap.sty  
  xxx -> foobarbaz\__hook_toplevel xxx \__hook_next xxx  
 **** Add to hook xxx (return) on input line ... <- boom
 Update code for hook 'begindocument' on input line ...:
@@ -334,6 +355,12 @@ Code labels for sorting:
 Data structure for label rules:
  firstaid = 0 -> 
 Handled code for firstaid
+Update code for hook 'file/after/cmap.sty' on input line ...:
+Code labels for sorting:
+ firstaid
+Data structure for label rules:
+ firstaid = 0 -> 
+Handled code for firstaid
 Update code for hook 'xxx' on input line ...:
 Code labels for sorting:
  front, rear, labels and return
@@ -359,4 +386,5 @@ All initialized (non-empty) hooks:
  file/after/pgfpages.sty -> \__hook_toplevel file/after/pgfpages.sty \cs_gset_eq:NN \shipout \pgfpages@originalshipout \cs_set_eq:NN \pgfpages@originalshipout \tex_shipout:D \cs_set_eq:NN \tex_shipout:D \pgfpages@interceptshipout \__hook_next file/after/pgfpages.sty  
  file/after/pgfmorepages.sty -> \__hook_toplevel file/after/pgfmorepages.sty \cs_set_nopar:Npn \pgfhookintoshipout {\cs_set_eq:NN \pgfpages@originalshipout \tex_shipout:D \cs_set_eq:NN \tex_shipout:D \pgfpages@interceptshipout }\__hook_next file/after/pgfmorepages.sty  
  file/after/CJK.sty -> \__hook_toplevel file/after/CJK.sty \FirstAidNeededT {CJK}{sty}{....-..-.. 4.8.4}{\DeclareCommandCopy \selectfont \CJK@selectfont \AddToHook {selectfont}[CJK]{\expandafter \ifx \csname CJK@\curr@fontshape \endcsname \relax \else \CJK@bold@false \csname CJK@\curr@fontshape \endcsname \fi }}\__hook_next file/after/CJK.sty  
+ file/after/cmap.sty -> \__hook_toplevel file/after/cmap.sty \FirstAidNeededT {cmap}{sty}{....-..-.. v... CMap support: searchable PDF}{\pdfgentounicode =0 }\__hook_next file/after/cmap.sty  
  xxx -> foobarbazboom\__hook_toplevel xxx \__hook_next xxx  
