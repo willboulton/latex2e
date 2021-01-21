@@ -139,6 +139,17 @@ the name. The coding has now been slightly altered to allow for this.
 \githubissue{427}
 
 
+\subsection{Improved copy\&paste support for \pdfTeX{} documents}
+
+Copying from and searching in PDF files works more reliably, if these
+files contain ToUnicode CMaps which help the viewer to map glyphs to
+(Unicode) characters. These CMaps already were written for OpenType
+font in \XeTeX{} and \LuaTeX{}. Now \pdfTeX's support for generating
+these maps is enabled by default too.
+%
+\githubissue{465}
+
+
 
 \subsection{Provide hook in \cs{selectfont}}
 
